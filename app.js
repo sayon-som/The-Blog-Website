@@ -68,7 +68,7 @@ app.post("/compose",function(req,res){
 
 app.get("/posts/:post_id",function(req,res){  
  const post_id=req.params.post_id;
- Blog.findOne({_id:post_id},function(err,docs){
+ Blog.findById(post_id,function(err,docs){
    if(!err){
        res.render("post",{
          title:docs.body_title,
