@@ -4,11 +4,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const load=require("lodash");
+require("dotenv").config();
 const mongoose=require('mongoose');
 const homeStartingContent = "WELCOME TO SAYON'S PERSONAL BLOG SPOT";
 const aboutContent = "I am a Sophomore Computer Science Undergad in HITK";
 const contactContent = "Information";
-mongoose.connect('mongodb://localhost:27017/blog',{useNewUrlParser: true, useUnifiedTopology: true}); 
+mongoose.connect(process.env.MONGO_URI,{useNewUrlParser: true, useUnifiedTopology: true}).then((data)=>{
+  console.log("Database connected")
+}); 
+
 const blog_schema={
   body_post:String,
   body_title:String
